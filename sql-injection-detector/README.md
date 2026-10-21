@@ -374,15 +374,8 @@ Possible future improvements include:
 * Adding an API for programmatic detection
 
 ---
-##
-## Dataset & Attribution
 
-This project uses a publicly available SQL injection dataset for machine learning experimentation and classification of benign and malicious SQL queries.
 
-- **Dataset name:** SQL Injection Dataset
-- **Original source:** [Kaggle — SQL Injection Dataset](https://www.kaggle.com/datasets/sajid576/sql-injection-dataset)
-- **Purpose:** Model training, evaluation, and SQL injection detection research.
-- **License:** Refer to the original dataset page for the applicable license and usage restrictions.
 
 All credit for the original dataset belongs to its respective creator. The model training, preprocessing, evaluation, and application code in this repository represent my own project work, except where otherwise acknowledged.
 ## ⭐ If You Like This Project
