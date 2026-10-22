@@ -602,13 +602,24 @@ This project is about understanding **how trustworthy that score actually is** ‚
 
 ## ü§ù Contributing
 
-Issues and pull requests are welcome. Please run the checks before opening a PR:
+This project lives in the [`ML_projects`](https://github.com/KrishnansuMohapatra/ML_projects) monorepo, under the `Phising_website_detection/` folder.
+
+To pick up the latest changes and work on it:
 
 ```bash
+git clone https://github.com/KrishnansuMohapatra/ML_projects.git
+cd ML_projects/Phising_website_detection
 uv sync
+```
+
+Run the checks before opening a PR:
+
+```bash
 uv run pytest
 uv run phishing-detector evaluate
 ```
+
+Both run automatically in GitHub Actions for this folder on every push to `main`.
 
 ---
 
