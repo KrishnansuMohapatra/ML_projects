@@ -1,0 +1,16 @@
+{
+  "features": [
+    "userFollowerCount",
+    "userFollowingCount",
+    "userBiographyLength",
+    "userMediaCount",
+    "usernameDigitCount",
+    "usernameLength"
+  ],
+  "best_threshold": 0.193528323705438,
+  "best_precision": 0.6851851851851852,
+  "best_recall": 0.925,
+  "best_f1": 0.7872340425043006,
+  "roc_auc": 0.9507142857142856,
+  "average_precision": 0.8550107242642304
+}
