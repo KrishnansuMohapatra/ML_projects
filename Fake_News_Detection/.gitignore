@@ -1,0 +1,24 @@
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Editors / IDE
+.idea/
+.vscode/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# Trained artifacts (regenerate by running main.py)
+*.pkl
+
+# Captured console output
+output.txt
+
+# Dataset (~111 MB, download separately — see README)
+data/raw/*.csv
