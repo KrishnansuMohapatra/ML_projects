@@ -1,0 +1,38 @@
+[
+    {
+        "intent": "order_tracking",
+        "questions": [
+            "Where is my order?",
+            "How can I track my order?",
+            "Can I track my package?"
+        ],
+        "answer": "You can track your order using the tracking link provided after shipment."
+    },
+    {
+        "intent": "return",
+        "questions": [
+            "How can I return my product?",
+            "Can I return my order?",
+            "I want to return an item"
+        ],
+        "answer": "You can return eligible products according to the store's return policy."
+    },
+    {
+        "intent": "delivery",
+        "questions": [
+            "How long does delivery take?",
+            "When will my order arrive?",
+            "What is the delivery time?"
+        ],
+        "answer": "Standard delivery usually takes 3–5 business days."
+    },
+    {
+        "intent": "cancellation",
+        "questions": [
+            "Can I cancel my order?",
+            "How do I cancel my order?",
+            "I want to cancel my purchase"
+        ],
+        "answer": "Orders can usually be cancelled before they are shipped."
+    }
+]
