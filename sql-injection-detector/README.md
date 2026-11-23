@@ -321,6 +321,25 @@ All settings are environment variables prefixed with `SQLI_` (see
 | `SQLI_RATE_LIMIT_PER_MINUTE` | `0` | 0 disables rate limiting |
 | `SQLI_ALLOW_MODEL_RELOAD` | `false` | Enables `/admin/reload` |
 
+### Minimal version (single file)
+
+If you want the smallest possible reference implementation to revise from,
+`api_minimal.py` is a **127-line** single file with the same model:
+
+| File | Lines | Contains |
+| --- | --- | --- |
+| `api_minimal.py` | ~127 | `predict`, `predict/batch`, `predict/file`, `health`, pydantic models, error handling |
+| `api/` (package) | ~1,975 | the above plus auth, rate limiting, config, heuristics, report exports, tests |
+
+```bash
+uv run uvicorn api_minimal:app --reload --port 8001
+# Swagger UI: http://localhost:8001/docs
+```
+
+The trade-off: `api_minimal.py` has no normalisation step, no API keys, no
+rate limiting and no configurable threshold. Use it to **learn the FastAPI
+patterns**; use `api/` when you need those guarantees.
+
 ### Quick check without the docs UI
 
 ```bash
