@@ -1,4 +1,5 @@
 
+import sys
 from pathlib import Path
 from datetime import datetime
 from io import BytesIO
@@ -6,6 +7,14 @@ from io import BytesIO
 import joblib
 import pandas as pd
 import streamlit as st
+
+# The shared preprocessing module lives in api/. Add the project root so the
+# Streamlit app and the FastAPI service normalise text identically.
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from api.ml.preprocessing import normalize_text  # noqa: E402
 
 
 # --------------------------------------------------
@@ -56,7 +65,9 @@ except Exception as exc:
 # --------------------------------------------------
 
 def analyze_queries(queries):
-    cleaned = [str(q).strip() for q in queries]
+    # Must match the training-time transform, otherwise URL-encoded payloads
+    # and irregular whitespace are scored on out-of-distribution text.
+    cleaned = [normalize_text(q) for q in queries]
     transformed = features.transform(cleaned)
 
     predictions = model.predict(transformed)

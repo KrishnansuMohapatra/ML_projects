@@ -19,8 +19,10 @@ wheels/
 venv/
 env/
 
-# Caches
+# Test/lint artifacts
 .pytest_cache/
+.coverage
+htmlcov/
 .mypy_cache/
 .ruff_cache/
 .cache/
@@ -31,6 +33,8 @@ env/
 # Environment variables
 .env
 .env.*
+# ...but keep the documented template
+!.env.example
 
 # OS / editor files
 .DS_Store

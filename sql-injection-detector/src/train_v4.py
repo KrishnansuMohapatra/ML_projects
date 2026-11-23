@@ -2,6 +2,7 @@
 from pathlib import Path
 from urllib.parse import unquote
 import re
+import sys
 
 import joblib
 import pandas as pd
@@ -21,6 +22,12 @@ from sklearn.metrics import (
 # ==================================================
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Make the project importable when this file is executed directly
+# (``uv run src/train_v4.py``), so training can reuse api.ml.preprocessing.
+if str(BASE_DIR) not in sys.path:
+    sys.path.insert(0, str(BASE_DIR))
+
 DATA_PATH = BASE_DIR / "data" / "sqliv2.csv"
 MODEL_DIR = BASE_DIR / "models"
 MODEL_PATH = MODEL_DIR / "sql_injection_model_v4.pkl"
@@ -33,21 +40,26 @@ MODEL_DIR.mkdir(parents=True, exist_ok=True)
 # Use this same function in app.py before prediction.
 # ==================================================
 
-def normalize_text(value):
-    text = str(value).strip()
+try:
+    # Preferred: the single shared implementation used by the FastAPI service.
+    from api.ml.preprocessing import normalize_text
+except ImportError:  # script run from inside src/ without the project on sys.path
 
-    # Decode URL encoding at most twice.
-    # Examples: %27 -> ' and %20 -> space
-    for _ in range(2):
-        decoded = unquote(text)
-        if decoded == text:
-            break
-        text = decoded
+    def normalize_text(value):
+        text = str(value).strip()
 
-    # Normalize whitespace without removing SQL punctuation.
-    text = re.sub(r"\s+", " ", text).strip()
+        # Decode URL encoding at most twice.
+        # Examples: %27 -> ' and %20 -> space
+        for _ in range(2):
+            decoded = unquote(text)
+            if decoded == text:
+                break
+            text = decoded
 
-    return text
+        # Normalize whitespace without removing SQL punctuation.
+        text = re.sub(r"\s+", " ", text).strip()
+
+        return text
 
 
 # ==================================================

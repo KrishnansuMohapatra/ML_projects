@@ -1,0 +1,16 @@
+.git
+.venv
+venv
+__pycache__
+*.py[oc]
+.pytest_cache
+.mypy_cache
+.ruff_cache
+data/
+tests/
+.env
+.env.*
+*.md
+!README.md
+notebooks/
+.ipynb_checkpoints/
